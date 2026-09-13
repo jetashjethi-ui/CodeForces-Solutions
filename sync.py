@@ -13,9 +13,9 @@ from datetime import datetime, timezone
 
 
 # ─── Configuration (loaded from environment / GitHub Secrets) ───
-GIT_NAME = os.environ.get("GIT_NAME", "YOUR_GITHUB_USERNAME")
-GIT_EMAIL = os.environ.get("GIT_EMAIL", "YOUR_GITHUB_EMAIL@example.com")
-CF_HANDLE = os.environ.get("CF_HANDLE", "")
+GIT_NAME = os.environ.get("GIT_NAME", "jetashjethi-ui")
+GIT_EMAIL = os.environ.get("GIT_EMAIL", "jetashjethi@gmail.com")
+CF_HANDLE = os.environ.get("CF_HANDLE", "Jitesh_jethi")
 LEETCODE_SESSION = os.environ.get("LEETCODE_SESSION", "")
 LEETCODE_CSRFTOKEN = os.environ.get("LEETCODE_CSRFTOKEN", "")
 
