@@ -1,0 +1,46 @@
+name: Sync LeetCode & Codeforces to GitHub
+
+on:
+  # ⏰ Runs automatically every 6 hours
+  schedule:
+    - cron: '0 */6 * * *'
+  # ▶️ Also allows manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history needed for date-based commits
+
+      - name: 🐍 Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 📦 Install Dependencies
+        run: pip install requests
+
+      - name: 🔧 Configure Git Identity
+        run: |
+          git config user.name "${{ secrets.GIT_NAME }}"
+          git config user.email "${{ secrets.GIT_EMAIL }}"
+
+      - name: 🚀 Run Sync Script
+        env:
+          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
+          LEETCODE_CSRFTOKEN: ${{ secrets.LEETCODE_CSRFTOKEN }}
+          CF_HANDLE: ${{ secrets.CF_HANDLE }}
+          GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
+          GIT_NAME: ${{ secrets.GIT_NAME }}
+        run: python sync.py
+
+      - name: 📤 Push Commits to GitHub
+        run: |
+          git push origin main || echo "Nothing new to push"
