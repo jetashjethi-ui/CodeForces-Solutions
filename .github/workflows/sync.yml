@@ -1,4 +1,4 @@
-name: Sync Codeforces Solutions
+name: sync
 
 on:
   schedule:
@@ -10,33 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
-      - name: Install Dependencies
-        run: pip install requests
-
-      - name: Configure Git
-        run: |
+      - run: pip install requests
+      - run: |
           git config user.name "${{ secrets.GIT_NAME }}"
           git config user.email "${{ secrets.GIT_EMAIL }}"
-
-      - name: Run Sync
+      - run: python sync.py
         env:
           CF_HANDLE: ${{ secrets.CF_HANDLE }}
           GIT_EMAIL: ${{ secrets.GIT_EMAIL }}
           GIT_NAME: ${{ secrets.GIT_NAME }}
-        run: python sync.py
-
-      - name: Push
-        run: |
-          git push origin main || echo "Nothing new to push"
+      - run: git push origin main || true

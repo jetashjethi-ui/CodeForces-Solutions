@@ -1,21 +1,8 @@
-# 🏆 CodeForces Solutions
+# CodeForces Solutions
 
-My competitive programming solutions from [Codeforces](https://codeforces.com/profile/Jitesh_jethi).
+Solutions to problems I've solved on [Codeforces](https://codeforces.com/profile/Jitesh_jethi).
 
-## 📂 Structure
+Organized by contest ID.
 
-```
-Codeforces/
-├── 1234/
-│   ├── A_Problem_Name.cpp
-│   └── B_Problem_Name.cpp
-├── 1567/
-│   └── C_Problem_Name.py
-└── ...
-```
-
-Solutions are organized by **contest ID** and **problem index**.
-
-## 🔗 Profile
-
-- **Codeforces:** [Jitesh_jethi](https://codeforces.com/profile/Jitesh_jethi)
+### How to navigate
+Each folder is a contest. Files are named like `A_Problem_Name.cpp`.
