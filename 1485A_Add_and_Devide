@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    long long t;
+    cin>>t;
+    while(t--){
+        long long a,b;
+        cin>>a>>b;
+        long long mini=INT_MAX;
+        for(long long i=0;i<50;i++){
+            if(b+i==1){continue;}
+            long long temp=a;
+            long long divisions=0;
+            while(temp>0){
+                temp/=(b+i);
+                divisions++;
+            }
+            long long sum=i+divisions;
+            mini=min(sum,mini);
+        }
+        cout<<mini<<"\n";
+    }
+}
